@@ -401,12 +401,25 @@ CONTAINS
   enddo
   enddo
 
+  if (OASIS_debug >= 5) then
+      write(nulprt,*) subname//' calling oasis_sys_sortC'
+      call oasis_flush(nulprt)
+  endif
   call oasis_sys_sortC(sortvars%num, sortvars%fld, sortkey)
+  if (OASIS_debug >= 5) then
+      write(nulprt,*) subname//' calling oasis_sys_sortIkey (modnum)'
+      call oasis_flush(nulprt)
+  endif
   call oasis_sys_sortIkey(sortvars%num, sortvars%modnum, sortkey)
+  if (OASIS_debug >= 5) then
+      write(nulprt,*) subname//' calling oasis_sys_sortIkey (varnum)'
+      call oasis_flush(nulprt)
+  endif
   call oasis_sys_sortIkey(sortvars%num, sortvars%varnum, sortkey)
 
-  if (OASIS_debug >= 15) then
+  if (OASIS_debug >= 5) then
      write(nulprt,*) subname//' Sorted array : sortvars'
+     call oasis_flush(nulprt)
      do n1 = 1,sortvars%num
         write(nulprt,*) subname,'sort sortvars',n1,sortkey(n1),sortvars%modnum(n1),sortvars%varnum(n1),trim(sortvars%fld(n1))
      enddo
@@ -507,7 +520,7 @@ CONTAINS
   call oasis_sys_sortIkey(sortndst%num, sortndst%namnum, sortkey)
   call oasis_sys_sortIkey(sortndst%num, sortndst%fldnum, sortkey)
 
-  if (OASIS_debug >= 15) then
+  if (OASIS_debug >= 5) then
      write(nulprt,*) subname//' Sorted array : sortndst'
      do n1 = 1,sortndst%num
         write(nulprt,*) subname,'sort sortndst',n1,sortkey(n1), &
@@ -661,7 +674,7 @@ CONTAINS
      part1  = prism_var(nv1)%part
      myfld  = prism_var(nv1)%name
 
-     IF (OASIS_debug >= 20) THEN
+     IF (OASIS_debug >= 5) THEN
         WRITE(nulprt,*) ' '
         WRITE(nulprt,*) subname,' get part and fld ',nv1,part1,trim(myfld)
         CALL oasis_flush(nulprt)
@@ -703,7 +716,7 @@ CONTAINS
 
         nns = namnn2sort(nn)
 
-        IF (OASIS_debug >= 20) THEN
+        IF (OASIS_debug >= 5) THEN
             WRITE(nulprt,*) subname,' found fld1 ',trim(myfld),nv1,nf
             WRITE(nulprt,*) subname,' found fld2 ',trim(myfld),nns,nn,myfldi,flag
             CALL oasis_flush(nulprt)
@@ -723,7 +736,7 @@ CONTAINS
            !>     * Migrate namcouple info into part
            !--------------------------------
 
-           IF (OASIS_debug >= 20) THEN
+           IF (OASIS_debug >= 5) THEN
                WRITE(nulprt,*) subname,' migrate namcouple to part '
                CALL oasis_flush(nulprt)
            ENDIF
@@ -743,7 +756,7 @@ CONTAINS
               endif
            endif
 
-           IF (OASIS_debug >= 20) THEN
+           IF (OASIS_debug >= 5) THEN
                WRITE(nulprt,*) subname,' Field : ',trim(prism_var(nn)%name)
                WRITE(nulprt,*) subname,' Grid dst : ',trim(namdstgrd(nn))
                WRITE(nulprt,*) subname,' Grid src : ',trim(namsrcgrd(nn))
@@ -760,7 +773,7 @@ CONTAINS
               call oasis_abort(file=__FILE__,line=__LINE__)
            endif
 
-           if (OASIS_debug >= 20) then
+           if (OASIS_debug >= 5) then
               write(nulprt,'(1x,2a,4i6,2a)') subname,' ca: myfld',nn,compid,&
                                              nv1,myfldi,' ',trim(myfld)
               call oasis_flush(nulprt)
@@ -775,7 +788,7 @@ CONTAINS
            call oasis_string_listGetName(otfldlist,myfldi,otfld)
            if (local_timers_on >= 3) call oasis_timer_stop ('cpl_setup_n3c1')
 
-           IF (OASIS_debug >= 20) THEN
+           IF (OASIS_debug >= 5) THEN
               WRITE(nulprt,*) subname,' otfld ',trim(otfld)
               CALL oasis_flush(nulprt)
            ENDIF
@@ -801,7 +814,7 @@ CONTAINS
               
               if (prism_var(nv1)%ops == OASIS_Out) then
                  namsrc_checkused(nf) = 1
-                 if (OASIS_debug >= 20) then
+                 if (OASIS_debug >= 5) then
                     write(nulprt,*) subname,' set src checkused ',trim(myfld),':',trim(otfld),nf
                     call oasis_flush(nulprt)
                  endif
@@ -814,7 +827,7 @@ CONTAINS
                     if (nn == sortnsrc%namnum(n1) .and. myfldi == sortnsrc%fldnum(n1)) then
                        namsrc_checkused(n1) = 1
                        found2 = .true.
-                       if (OASIS_debug >= 20) then
+                       if (OASIS_debug >= 5) then
                           write(nulprt,*) subname,' set dst checkused ',trim(myfld),':',trim(otfld),n1
                           call oasis_flush(nulprt)
                        endif
@@ -895,7 +908,7 @@ CONTAINS
               !>       * Generate field list, multiple field support
               !--------------------------------
 
-              IF (OASIS_debug >= 20) THEN
+              IF (OASIS_debug >= 5) THEN
                   WRITE(nulprt,*) subname,' set prism_coupler '
                   CALL oasis_flush(nulprt)
               ENDIF
@@ -1010,7 +1023,7 @@ CONTAINS
                  ! tags assume up to 1000 namcouple inputs and 100 models
                  !--------------------------------
 
-                 IF (OASIS_debug >= 20) THEN
+                 IF (OASIS_debug >= 5) THEN
                     WRITE(nulprt,*) subname,' inout flags '
                     CALL oasis_flush(nulprt)
                  ENDIF
@@ -1053,7 +1066,7 @@ CONTAINS
                  !>       * Setup prism_coupler mapper
                  !--------------------------------
 
-                 IF (OASIS_debug >= 20) THEN
+                 IF (OASIS_debug >= 5) THEN
                     WRITE(nulprt,*) subname,' mapper '
                     CALL oasis_flush(nulprt)
                  ENDIF
@@ -1127,15 +1140,28 @@ CONTAINS
 
      enddo  ! nfind
   enddo  ! nv1
+  IF (OASIS_debug >= 5) THEN
+     WRITE(nulprt,*) subname,' finished nv1 loop '
+     CALL oasis_flush(nulprt)
+  ENDIF
   if (local_timers_on >= 2) call oasis_timer_stop ('cpl_setup_n3')
   if (local_timers_on >= 1) then
      call oasis_timer_start('cpl_setup_n4_barrier')
+
+     IF (OASIS_debug >= 5) THEN
+        WRITE(nulprt,*) subname,' reached oasis_mpi_barrier cpl_setup_n4 '
+        CALL oasis_flush(nulprt)
+     ENDIF
      call oasis_mpi_barrier(mpi_comm_global, 'cpl_setup_n4')
      call oasis_timer_stop('cpl_setup_n4_barrier')
      call oasis_timer_start('cpl_setup_n4')
   endif
   if (local_timers_on >= 3) call oasis_timer_start('cpl_setup_n4a')
 
+  IF (OASIS_debug >= 5) THEN
+     WRITE(nulprt,*) subname,' before allocate(namsrc_checkused_g(sortnsrc%num)) '
+     CALL oasis_flush(nulprt)
+  ENDIF
   ! aggregate checkused info across all pes and then check on each component root
   allocate(namsrc_checkused_g(sortnsrc%num))
   call oasis_mpi_max(namsrc_checkused,namsrc_checkused_g,mpi_comm_global,string=trim(subname)//':srccheckused',all=.true.)
@@ -1143,6 +1169,7 @@ CONTAINS
   do n1 = 1,sortnsrc%num
      if (namsrc_checkused_g(n1) /= 1) then
         if (mpi_rank_local == 0) write(nulprt,*) subname,estr,'namcouple variable not used: ',trim(sortnsrc%fld(n1))
+        CALL oasis_flush(nulprt)
         found = .true.
      endif
   enddo
@@ -1168,6 +1195,11 @@ CONTAINS
   ! need to modify fldlist and varids in prism_couplers
   ! order of fields needs to be preserved
   !----------------------------------------------------------
+
+  IF (OASIS_debug >= 5) THEN
+     WRITE(nulprt,*) subname,' before nc and npc loop'
+     CALL oasis_flush(nulprt)
+  ENDIF
 
   do nc = 1,prism_mcoupler
   do npc = 1,2

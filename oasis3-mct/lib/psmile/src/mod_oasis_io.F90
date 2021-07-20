@@ -488,6 +488,7 @@ subroutine oasis_io_read_avfile(rstfile,av,gsmap,mpicom,abort,nampre,didread)
             call mct_string_clean(mstring)
 
             status = nf90_inq_varid(ncid,trim(itemc),varid)
+            write(nulprt,*) subname,estr,'seeking var = ',trim(itemc),' in file = ',trim(rstfile),':',trim(nf90_strerror(status))
 
             if (status /= nf90_noerr) then
                IF (labort) THEN
