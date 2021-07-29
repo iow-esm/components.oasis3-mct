@@ -124,8 +124,6 @@ integer function oasis_string_countChar(str,char,rc)
 !-------------------------------------------------------------------------------
 
    call oasis_debug_enter(subname)
-   call oasis_debug_enter('string='//trim(str))
-   call oasis_debug_exit('string='//trim(str))
 
    count = 0
    do n = 1, len_trim(str)
@@ -134,6 +132,7 @@ integer function oasis_string_countChar(str,char,rc)
    oasis_string_countChar = count
 
    if (present(rc)) rc = 0
+
    call oasis_debug_exit(subname)
 
 end function oasis_string_countChar

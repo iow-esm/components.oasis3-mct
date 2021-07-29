@@ -694,14 +694,11 @@ contains
        if (pcpointmp%valid) then
        if (prism_part(pcpointmp%partID)%lsize > 0) then
 
-          !if (OASIS_debug >= 20) then
+          if (OASIS_debug >= 20) then
              write(nulprt,'(2a,4i6,2l3,i8)') subname,'deadlock_chkA ',varid,nc,n,npc,sndrcv,pcpointmp%sndrcv,msec
              write(nulprt,'(2a,1x,a,2i8,1x,a,2i8)') subname,'deadlock_chkB ',trim(pcpointer%fldlist),pcpointer%ltime,pcpointer%dt,trim(pcpointmp%fldlist),pcpointmp%ltime,pcpointmp%dt
-          !endif
+          endif
 
-          write(nulprt,*) 'deadlock checking nc =',nc,' of ',prism_var(varid)%ncpl,', n=',n,' of ',prism_mcoupler
-          write(nulprt,*) '(pcpointmp%ltime /= ispval .and. msec > pcpointmp%ltime + pcpointmp%dt) = ',(pcpointmp%ltime /= ispval .and. msec > pcpointmp%ltime + pcpointmp%dt)
-          write(nulprt,*) '(pcpointmp%ltime == ispval .and. pcpointer%ltime /= ispval .and. msec >= pcpointmp%dt ) = ',(pcpointmp%ltime == ispval .and. pcpointer%ltime /= ispval .and. msec >= pcpointmp%dt )
           if ((sndrcv .and. pcpointmp%sndrcv .and. time_now) .and. &
               ((pcpointmp%ltime /= ispval .and. msec >  pcpointmp%ltime + pcpointmp%dt) .or. &
                (pcpointmp%ltime == ispval .and. pcpointer%ltime /= ispval .and. msec >= pcpointmp%dt ))) then
