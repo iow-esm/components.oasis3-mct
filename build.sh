@@ -2,6 +2,8 @@ target=$1
 debug=${2:-"release"}
 fast=${3:-"fast"}
 
+set -e
+
 source ../../local_scripts/identify_target.sh $target $debug $fast
 
 # component to build
