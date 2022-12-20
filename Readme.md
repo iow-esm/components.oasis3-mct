@@ -26,7 +26,7 @@ Contribution and changes from IOW are mainly build scripts.
 
 | date        | author(s)   | link      |
 |---          |---          |---        |
-| 2022-12-20  | SK          | [1.00.01](https://git.io-warnemuende.de/iow_esm/components.cclm/src/branch/1.00.01)     | 
+| 2022-12-20  | SK          | [1.00.01](https://git.io-warnemuende.de/iow_esm/components.oasis3-mct/src/branch/1.00.01)     | 
 
 <details>
 
@@ -56,7 +56,7 @@ Contribution and changes from IOW are mainly build scripts.
 
 | date        | author(s)   | link      |
 |---          |---          |---        |
-| 2022-01-28  | SK          | [1.00.00](https://git.io-warnemuende.de/iow_esm/components.cclm/src/branch/1.00.00)     | 
+| 2022-01-28  | SK          | [1.00.00](https://git.io-warnemuende.de/iow_esm/components.oasis3-mct/src/branch/1.00.00)     | 
 
 <details>
 
