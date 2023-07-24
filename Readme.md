@@ -22,7 +22,39 @@ Contribution and changes from IOW are mainly build scripts.
 
 # Versions
 
-## 1.00.01 (latest release)
+## 1.00.02 (latest release)
+
+| date        | author(s)   | link      |
+|---          |---          |---        |
+| 2023-07-24  | SK          | [1.00.02](https://git.io-warnemuende.de/iow_esm/components.oasis3-mct/src/branch/1.00.02)     | 
+
+<details>
+
+### changes
+* added build script templates
+    
+### dependencies
+* None
+  
+### known issues
+* None
+
+### tested with
+* intensively tested on both HLRN machines
+  * using example setups available under:
+    (coupled) /scratch/usr/mviowmod/IOW_ESM/setups/
+              MOM5_Baltic-CCLM_Eurocordex/example_8nm_0.22deg/1.00.00
+         and  https://zenodo.org/record/8167743/files/1.00.00.tar.gz (https://doi.org/10.5281/zenodo.8167743)                 
+    (uncoupled) /scratch/usr/mviowmod/IOW_ESM/setups/
+                CCLM_Eurocordex/example_0.22deg/1.00.00
+* can be built and run on Haumea but output is not intensively tested
+  
+</details>
+
+<details>
+<summary><b><i>older versions</i></b></summary>
+
+## 1.00.01
 
 | date        | author(s)   | link      |
 |---          |---          |---        |
@@ -78,4 +110,6 @@ Contribution and changes from IOW are mainly build scripts.
                 CCLM_Eurocordex/example_0.22deg/1.00.00
 * can be built and run on Haumea but output is not intensively tested
   
+</details>
+
 </details>
